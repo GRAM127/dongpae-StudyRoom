@@ -4,7 +4,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kr.dongpae.domain.model.DeskData
 
-interface FirebaseDataRepository {
+interface FirebaseDatabaseRepository {
 
     @ExperimentalCoroutinesApi
     fun loadDeskData(): Flow<DeskData>

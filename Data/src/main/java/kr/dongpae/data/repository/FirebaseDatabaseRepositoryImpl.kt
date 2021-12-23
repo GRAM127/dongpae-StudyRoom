@@ -1,19 +1,18 @@
 package kr.dongpae.data.repository
 
 import android.app.Application
-import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transformLatest
-import kr.dongpae.data.datasource.FirebaseDataSourceImpl
+import kr.dongpae.data.datasource.FirebaseDatabaseSourceImpl
 import kr.dongpae.domain.model.DeskData
-import kr.dongpae.domain.repository.FirebaseDataRepository
+import kr.dongpae.domain.repository.FirebaseDatabaseRepository
 import org.json.JSONObject
 
-class FirebaseDataRepositoryImpl private constructor(application: Application): FirebaseDataRepository {
+class FirebaseDatabaseRepositoryImpl private constructor(application: Application): FirebaseDatabaseRepository {
 
-    private val firebaseDataSources =  FirebaseDataSourceImpl()
+    private val firebaseDataSources =  FirebaseDatabaseSourceImpl()
 
     private val database = FirebaseDatabase.getInstance()
 
@@ -30,10 +29,10 @@ class FirebaseDataRepositoryImpl private constructor(application: Application): 
 
 
     companion object {
-        private var instance: FirebaseDataRepositoryImpl? = null
+        private var instance: FirebaseDatabaseRepositoryImpl? = null
 
         fun initialize(application: Application) {
-            if (instance == null) instance = FirebaseDataRepositoryImpl(application)
+            if (instance == null) instance = FirebaseDatabaseRepositoryImpl(application)
         }
         fun get() = instance ?: throw IllegalStateException("FirebaseDataRepository must be initialized")
 
